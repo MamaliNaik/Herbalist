@@ -1,0 +1,238 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Contact Us</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500&display=swap" rel="stylesheet">
+
+<style>
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
+}
+
+body{
+  font-family:'Poppins',sans-serif;
+  background:#fff;
+}
+
+/* ================= CONTACT ================= */
+.contact-section{
+  min-height:75vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+}
+
+.contact-container{
+  width:100%;
+  max-width:460px;   /* SMALLER FORM */
+  padding:20px;
+  animation:slideUp .7s ease;
+}
+
+@keyframes slideUp{
+  from{
+    opacity:0;
+    transform:translateY(60px);
+  }
+  to{
+    opacity:1;
+    transform:translateY(0);
+  }
+}
+
+.contact-container h1{
+  text-align:center;
+  font-weight:400;
+  margin-bottom:25px;
+}
+
+.contact-form label{
+  font-size:13px;
+  color:#666;
+}
+
+.contact-form input,
+.contact-form textarea{
+  width:100%;
+  border:1px solid #e2e2e2;
+  padding:10px;
+  font-size:13px;
+  margin:6px 0 18px;
+  outline:none;
+}
+
+.contact-form textarea{
+  resize:none;
+}
+
+.contact-form input:focus,
+.contact-form textarea:focus{
+  border-color:#aaa;
+}
+
+.contact-form button{
+  background:#111;
+  color:#fff;
+  border:none;
+  padding:9px 20px;
+  font-size:13px;
+  cursor:pointer;
+}
+
+/* ================= FOOTER (HOMEPAGE STYLE) ================= */
+.footer{
+  background:#0b0b0b;
+  color:#ccc;
+  margin-top:70px;
+}
+
+.footer-top{
+  display:grid;
+  grid-template-columns:repeat(4,1fr);
+  gap:40px;
+  padding:60px 80px;
+}
+
+.footer h3{
+  color:#fff;
+  margin-bottom:16px;
+  font-size:16px;
+}
+
+.footer p{
+  font-size:13px;
+  line-height:1.7;
+}
+
+.footer ul{
+  list-style:none;
+}
+
+.footer li{
+  font-size:13px;
+  margin-bottom:12px;
+}
+
+.footer li:hover{
+  color:#fff;
+  cursor:pointer;
+}
+
+.footer-bottom{
+  border-top:1px solid #222;
+  padding:18px 80px;
+  display:flex;
+  justify-content:space-between;
+  font-size:12px;
+  color:#888;
+}
+
+/* Responsive */
+@media(max-width:900px){
+  .footer-top{
+    grid-template-columns:repeat(2,1fr);
+    padding:50px;
+  }
+}
+
+@media(max-width:600px){
+  .contact-container{
+    max-width:100%;
+  }
+
+  .footer-top{
+    grid-template-columns:1fr;
+    padding:30px;
+  }
+
+  .footer-bottom{
+    flex-direction:column;
+    gap:10px;
+    text-align:center;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<!-- CONTACT FORM -->
+<section class="contact-section">
+  <div class="contact-container">
+    <h1>Contact Us</h1>
+
+    <form method="post" class="contact-form">
+      {% csrf_token %}
+
+      <label>Full Name</label>
+      <input type="text" name="name">
+
+      <label>Email</label>
+      <input type="email" name="email">
+
+      <label>How Can I Help You?</label>
+      <textarea rows="4" name="message"></textarea>
+
+      <label>Phone Number</label>
+      <input type="tel" name="phone">
+
+      <button type="submit">Submit</button>
+    </form>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <div class="footer-top">
+    <div>
+      <h3>Shop Cart</h3>
+      <p>
+        Premium quality products with fast delivery
+        and customer satisfaction guaranteed.
+      </p>
+    </div>
+
+    <div>
+      <h3>Contacts information</h3>
+      <ul>
+        <li>+91 98765 43210</li>
+        <li>India</li>
+        <li>Mon – Sat: 9:00 AM – 6:00 PM</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Useful Links</h3>
+      <ul>
+        <li>Home</li>
+        <li>Shop</li>
+        <li>Orders</li>
+        <li>Contact</li>
+      </ul>
+    </div>
+
+    <div>
+      <h3>Payments</h3>
+      <ul>
+        <li>Visa</li>
+        <li>MasterCard</li>
+        <li>UPI</li>
+        <li>Net Banking</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    <span>© 2026 Shop Cart. All Rights Reserved.</span>
+    <span>Secure Payments</span>
+  </div>
+</footer>
+
+</body>
+</html>
