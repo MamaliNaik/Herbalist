@@ -2,223 +2,65 @@
 {% load static %}
 
 {% block title %}
-<title>{{ product.name }} | Herbalist</title>
+<title>{{ product.product_name }}</title>
 {% endblock %}
 
 {% block bodyblock %}
 
-<style>
-.product-detail-page {
-  max-width: 1200px;
-  margin: 60px auto;
-  padding: 20px;
-}
+<link rel="stylesheet" href="/static/css/product_detail.css">
 
-.product-detail-top {
-  display: grid;
-  grid-template-columns: 420px 1fr;
-  gap: 50px;
-  align-items: start;
-}
+<section class="product-detail">
+  <div class="product-wrapper">
 
-/* Smaller image */
-.product-image-box {
-  background: #f8f6ef;
-  padding: 20px;
-  border-radius: 12px;
-  text-align: center;
-  overflow: hidden;
-}
-
-.product-image-box img {
-  width: 100%;
-  max-height: 300px;
-  object-fit: contain;
-  transition: transform 0.4s ease;
-}
-
-.product-image-box:hover img {
-  transform: scale(1.1);
-}
-
-/* Right info */
-.product-info h1 {
-  font-size: 30px;
-  color: #1f4d3f;
-}
-
-.star-rating {
-  color: #f3c969;
-  font-size: 18px;
-  margin: 8px 0;
-}
-
-.product-price {
-  font-size: 26px;
-  font-weight: bold;
-  margin: 15px 0;
-}
-
-.product-actions {
-  display: flex;
-  align-items: center;
-  gap: 20px;
-  margin: 20px 0;
-}
-
-.qty-box {
-  display: flex;
-  align-items: center;
-  border: 1px solid #ccc;
-  border-radius: 30px;
-}
-
-.qty-box button {
-  background: none;
-  border: none;
-  padding: 10px 16px;
-  font-size: 18px;
-  cursor: pointer;
-}
-
-.qty-box span {
-  padding: 0 14px;
-}
-
-.add-cart-btn {
-  padding: 12px 28px;
-  background: #f3c969;
-  border: none;
-  border-radius: 30px;
-  font-weight: 600;
-  cursor: pointer;
-}
-
-.add-cart-btn:hover {
-  background: #e2b84f;
-}
-
-/* Product meta */
-.product-meta {
-  margin-top: 20px;
-  font-size: 15px;
-  color: #555;
-}
-
-.product-meta p {
-  margin: 6px 0;
-}
-
-/* Description */
-.tabs {
-  margin-top: 50px;
-}
-
-.tab-buttons {
-  display: flex;
-  gap: 30px;
-  border-bottom: 1px solid #ddd;
-}
-
-.tab-buttons button {
-  background: none;
-  border: none;
-  font-size: 16px;
-  padding-bottom: 10px;
-  cursor: pointer;
-  font-weight: 600;
-  color: #777;
-}
-
-.tab-buttons button.active {
-  color: #1f4d3f;
-  border-bottom: 3px solid #f3c969;
-}
-
-.tab-content {
-  padding-top: 20px;
-  font-size: 15px;
-  color: #444;
-}
-
-@media (max-width: 768px) {
-  .product-detail-top {
-    grid-template-columns: 1fr;
-  }
-}
-</style>
-
-<div class="product-detail-page">
-
-  <div class="product-detail-top">
-
-    <!-- LEFT IMAGE -->
-    <div class="product-image-box">
-      <img src="{{ product.product_image.url }}" alt="{{ product.name }}">
+    <!-- IMAGE -->
+    <div class="product-image">
+      <img src="{{ product.product_image.url }}" alt="{{ product.product_name }}">
     </div>
 
-    <!-- RIGHT DETAILS -->
+    <!-- PRODUCT INFO -->
     <div class="product-info">
-      <h1>{{ product.name }}</h1>
 
-      <div class="star-rating">
-        ★ ★ ★ ★ ☆ <small>(2 reviews)</small>
-      </div>
+      <!-- NAME -->
+      <h1>{{ product.product_name }}</h1>
 
-      <div class="product-price">₹ {{ product.price }}</div>
+      <!-- CATEGORY -->
+      <p class="product-category">
+        Category: {{ product.category }}
+      </p>
 
-      <!-- Quantity + Cart -->
-      <div class="product-actions">
-        <div class="qty-box">
-          <button onclick="qtyDown()">−</button>
-          <span id="qty">1</span>
-          <button onclick="qtyUp()">+</button>
-        </div>
-        <button class="add-cart-btn">Add to Cart</button>
-      </div>
+      <!-- DESCRIPTION FROM BACKEND -->
+      <p class="product-desc">
+        {{ product.desc }}
+      </p>
 
-      <!-- Product details -->
+      <!-- PRICE -->
+      <p class="product-price">
+        ₹ {{ product.price }}
+      </p>
+
+      <!-- EXTRA DETAILS -->
       <div class="product-meta">
-        <p><strong>Category:</strong> Oil</p>
-        <p><strong>Size:</strong> 30ml</p>
-        <p><strong>Plant Type:</strong> Sativa Dominant</p>
-        <p><strong>THC:</strong> 10.3mg/g</p>
-        <p><strong>CBD:</strong> 0.33%</p>
-        <p><strong>Effects:</strong> Calm, Happy, Relaxed</p>
-        <p><strong>Tags:</strong> Cannabis, oil</p>
-        <p><strong>SKU:</strong> 1234567</p>
+        <p><strong>Size:</strong> {{ product.size }}</p>
+        <p><strong>Plant Type:</strong> {{ product.plant_type }}</p>
+        <p><strong>THC:</strong> {{ product.thc }}</p>
+        <p><strong>CBD:</strong> {{ product.cbd }}</p>
+        <p><strong>Effects:</strong> {{ product.effects }}</p>
+        <p><strong>SKU:</strong> {{ product.sku }}</p>
       </div>
 
+      <!-- BUTTON -->
+      {% if request.user.is_authenticated %}
+  <a href="{% url 'add_to_cart' product.id %}">
+    <button class="add-cart-btn">Add to Cart</button>
+  </a>
+{% else %}
+  <a href="{% url 'login' %}">
+    <button class="add-cart-btn">Login to Add Cart</button>
+  </a>
+{% endif %}
+
     </div>
   </div>
-
-  <!-- Description -->
-  <div class="tabs">
-    <div class="tab-buttons">
-      <button class="active">Description</button>
-      <button>Reviews (2)</button>
-      <button>Additional Information</button>
-    </div>
-
-    <div class="tab-content">
-      <p>{{ product.description }}</p>
-    </div>
-  </div>
-
-</div>
-
-<script>
-function qtyUp() {
-  let q = document.getElementById("qty");
-  q.innerText = parseInt(q.innerText) + 1;
-}
-
-function qtyDown() {
-  let q = document.getElementById("qty");
-  if (parseInt(q.innerText) > 1) {
-    q.innerText = parseInt(q.innerText) - 1;
-  }
-}
-</script>
+</section>
 
 {% endblock %}

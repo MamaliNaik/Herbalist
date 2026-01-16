@@ -1,0 +1,25 @@
+.success-box {
+  padding: 80px;
+  text-align: center;
+}
+
+.success-box h1 {
+  color: #214c3d;
+  font-size: 40px;
+}
+
+.success-box p {
+  font-size: 18px;
+  margin-top: 15px;
+}
+
+.success-box a {
+  display: inline-block;
+  margin-top: 30px;
+  padding: 12px 24px;
+  background: #f3c969;
+  color: #234b43;
+  text-decoration: none;
+  border-radius: 30px;
+  font-weight: bold;
+}

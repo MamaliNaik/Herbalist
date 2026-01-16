@@ -1,0 +1,47 @@
+{% extends 'base.html' %}
+{% block title %}<title>My Orders</title>{% endblock %}
+
+{% block bodyblock %}
+<link rel="stylesheet" href="/static/css/order_history.css">
+</head>
+<body>
+
+<div class="container">
+    <h2>My Order History</h2>
+
+    {% if orders %}
+        {% for order in orders %}
+        <div class="order-card">
+
+            <div class="order-header">
+                <span>Order #{{ order.id }}</span>
+                <span>{{ order.created_at|date:"d M Y, H:i" }}</span>
+            </div>
+
+            {% for item in order.items.all %}
+            <div class="item">
+                <img 
+                    src="{{ item.product.product_image.url }}"
+                    alt="{{ item.product.name }}"
+                    onerror="this.src='https://via.placeholder.com/300'"
+                >
+
+                <div class="item-details">
+                    <h4>{{ item.product.name }}</h4>
+                    <p>Quantity: {{ item.quantity }}</p>
+                    <p class="price">₹ {{ item.product.price }}</p>
+                </div>
+            </div>
+            {% endfor %}
+
+            <div class="order-footer">
+                Total: ₹ {{ order.total_amount }}
+            </div>
+
+        </div>
+        {% endfor %}
+    {% else %}
+        <p class="empty">You have not placed any orders yet.</p>
+    {% endif %}
+</div>
+{% endblock %}

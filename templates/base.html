@@ -13,279 +13,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Lugrasimo&family=Meddon&family=Poppins:ital,wght@0,100..900;1,100..900&family=STIX+Two+Text:wght@400..700&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="/static/css/base.css">
 
-    <!-- CSS -->
-    <style>
-      * {
-        margin: 0;
-        padding: 0;
-        box-sizing: border-box;
-      }
-      
-      body {
-        font-family: Arial, sans-serif;
-      }
-      
-      /* NAVBAR */
-      .navbar {
-        height: 90px;
-        padding: 0 60px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        background: #fff;
-      }
-      
-      .nav-left {
-        display: flex;
-        align-items: center;
-        gap: 60px;
-      }
-      
-      .logo {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        font-size: 28px;
-        font-weight: 700;
-      }
-      
-      .logo .circle {
-        width: 30px;
-        height: 30px;
-        background: #f2d201;
-        border-radius: 50%;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .menu {
-        list-style: none;
-        display: flex;
-        gap: 35px;
-        font-size: 18px;
-      }
-      
-      .menu li {
-        position: relative;
-      }
-      
-      .menu a {
-        text-decoration: none;
-        color: #000;
-        font-weight: 500;
-      }
-      
-      .menu a:hover {
-        color: #1f4d3f;
-      }
-      
-      /* DROPDOWN */
-      .dropdown-menu {
-        list-style: none;
-        position: absolute;
-        top: 100%;
-        left: 0;
-        background: #fff;
-        min-width: 180px;
-        padding: 10px 0;
-        border-radius: 8px;
-        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
-        display: none;
-        z-index: 1000;
-      }
-      
-      .menu li:hover > .dropdown-menu {
-        display: block;
-      }
-      
-      .dropdown-menu a {
-        display: block;
-        padding: 10px 16px;
-        font-size: 16px;
-        color: #000;
-      }
-      
-      .dropdown-menu a:hover {
-        background: #f3c969;
-        color: #1f4d3f;
-      }
-      
-      .nav-right {
-        display: flex;
-        align-items: center;
-        gap: 20px;
-      }
-      
-      .search-box {
-        width: 320px;
-        height: 44px;
-        border: 1px solid #ccc;
-        border-radius: 30px;
-        display: flex;
-        align-items: center;
-        padding-left: 16px;
-      }
-      
-      .search-box input {
-        border: none;
-        outline: none;
-        flex: 1;
-      }
-      
-      .search-btn {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        border: none;
-        background: #f3c969;
-        cursor: pointer;
-      }
-      
-      /* FOOTER */
-      /* =========================
-         FOOTER STYLES
-         ========================= */
-      
-      .footer {
-        background: #234b43;
-        color: #fff;
-        font-family: Arial, sans-serif;
-      }
-      
-      /* TOP SECTION */
-      .footer-top {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 60px;
-        padding: 80px 100px;
-      }
-      
-      .footer-col h3,
-      .footer-col h2.brand {
-        margin-bottom: 20px;
-      }
-      
-      .brand {
-        color: #f3c969;
-        margin-bottom: 15px;
-        font-size: 24px;
-      }
-      
-      /* Paragraphs */
-      .footer-col p {
-        line-height: 1.7;
-        opacity: 0.9;
-      }
-      
-      /* Social Icons */
-      .socials {
-        margin-top: 20px;
-        display: flex;
-        gap: 15px;
-      }
-      
-      .socials span {
-        width: 36px;
-        height: 36px;
-        border-radius: 50%;
-        background: #f3c969;
-        color: #234b43;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        cursor: pointer;
-        font-weight: bold;
-      }
-      
-      /* CONTACT INFO */
-      .contact-list {
-        list-style: none;
-        padding: 0;
-      }
-      
-      .contact-list li {
-        margin-bottom: 16px;
-        line-height: 1.6;
-      }
-      
-      /* LINKS */
-      .footer-links {
-        list-style: none;
-        padding: 0;
-      }
-      
-      .footer-links li {
-        margin-bottom: 12px;
-        cursor: pointer;
-        transition: 0.3s;
-      }
-      
-      .footer-links li:hover {
-        color: #f3c969;
-      }
-      
-      /* INSTAGRAM GRID */
-      .insta-grid {
-        display: grid;
-        grid-template-columns: repeat(3, 1fr);
-        gap: 10px;
-      }
-      
-      .insta-grid div {
-        background: rgba(255, 255, 255, 0.15);
-        height: 70px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      
-      .insta-grid img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-      
-      /* BOTTOM SECTION */
-      .footer-bottom {
-        background: #f8f6ef;
-        color: #333;
-        padding: 25px 100px;
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        font-size: 14px;
-      }
-      
-      .footer-bottom .payments span {
-        margin-left: 15px;
-        font-weight: bold;
-      }
-      
-      /* RESPONSIVE FOOTER */
-      @media (max-width: 1024px) {
-        .footer-top {
-          grid-template-columns: repeat(2, 1fr);
-          gap: 40px;
-          padding: 60px 50px;
-        }
-      
-        .footer-bottom {
-          flex-direction: column;
-          gap: 10px;
-          text-align: center;
-        }
-      }
-      
-      @media (max-width: 600px) {
-        .footer-top {
-          grid-template-columns: 1fr;
-          gap: 30px;
-          padding: 40px 20px;
-        }
-      }
-    </style>
   </head>
 
   <body>
@@ -321,8 +50,12 @@
 
   {% if request.user.is_authenticated %}
     <li>
-      <a href="{% url 'logout' %}">Logout</a>
-    </li>
+  <a href="#" style="font-weight: 700;">Hi, {{ user.username }} ▾</a>
+  <ul class="dropdown-menu">
+    <li><a href="{% url 'logout' %}">Logout</a></li>
+  </ul>
+</li>
+
   {% else %}
     <li>
       <a href="#">Sign In ▾</a>
@@ -336,13 +69,9 @@
 
         </div>
 
-        <div class="nav-right">
-          <div class="search-box">
-            <input type="text" placeholder="Search..." />
-            <button class="search-btn">🔍</button>
-          </div>
+        <div class="nav-right">         
           <div class="icon-circle">❤</div>
-          <div class="icon-circle">🛒</div>
+        <div class="icon-circle"><a href="{% url 'cart' %}">🛒</a></div>
         </div>
       </header>
     {% endblock %}
@@ -371,7 +100,7 @@
 
           <!-- Contact Info -->
           <div class="footer-col">
-            <a href="{% url 'contact' %}">Contacts information</a>
+            <a href="{% url 'contact' %}">Contact information</a>
 
             <ul class="contact-list">
               <li>📞 +1-202-555-0133</li>
@@ -435,5 +164,17 @@
         </div>
       </footer>
     {% endblock %}
+
+    <script>
+  const navbar = document.querySelector('.navbar');
+
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 20) {
+      navbar.classList.add('scrolled');
+    } else {
+      navbar.classList.remove('scrolled');
+    }
+  });
+</script>
   </body>
 </html>
